@@ -4,7 +4,7 @@ import name.dmitryrazumov.directory.store.Store;
 
 /**
  * Class LoadAction
- * Класс загружает список городов из справочника.
+ * Класс описывает элемент меню для загрузки справочника городов.
  * @author Dmitry Razumov
  * @version 1
  */
@@ -18,6 +18,7 @@ public class LoadAction implements UserAction {
     @Override
     public boolean execute(Input input, Store directory) {
         String name =  input.askStr("Введите имя файла: ");
+        directory.load(name);
         return true;
     }
 }

@@ -53,6 +53,8 @@ public class Main {
         List<UserAction> actions = Arrays.asList(
                 new LoadAction(),
                 new FindAllAction(),
+                new SortByNameAction(),
+                new SortByDistrictAndNameAction(),
                 new ExitAction()
         );
         new Main().init(validate, directory, actions);
