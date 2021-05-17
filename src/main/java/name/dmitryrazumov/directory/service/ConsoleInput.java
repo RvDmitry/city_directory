@@ -14,34 +14,34 @@ public class ConsoleInput implements Input {
 
     /**
      * Метод задает пользователю вопрос и возвращает введенный пользователем ответ в виде строки.
-     * @param question Вопрос на который нужно ответить пользователю
-     * @return Строка введенная пользователем
+     * @param message Сообщение для пользователя.
+     * @return Строка введенная пользователем.
      */
     @Override
-    public String askStr(String question) {
-        System.out.print(question);
+    public String askStr(String message) {
+        System.out.print(message);
         return scanner.nextLine();
     }
 
     /**
      * Метод задает пользователю вопрос и возвращает введенный пользователем ответ в виде числа.
-     * @param question Вопрос на который нужно ответить пользователю
-     * @return Число введенное пользователем
+     * @param message Сообщение для пользователя.
+     * @return Число введенное пользователем.
      */
     @Override
-    public int askInt(String question) {
-        return Integer.parseInt(askStr(question));
+    public int askInt(String message) {
+        return Integer.parseInt(askStr(message));
     }
 
     /**
      * Метод запрашивает от пользователя ввод данных от 0 до max.
-     * @param question Вопрос на который нужно ответить пользователю
-     * @param max Максимальное число, которое может ввести пользователь
-     * @return Число введенное пользователем
+     * @param message Сообщение для пользователя.
+     * @param max Максимальное число, которое может ввести пользователь.
+     * @return Число введенное пользователем.
      */
     @Override
-    public int askInt(String question, int max) {
-        int select = askInt(question);
+    public int askInt(String message, int max) {
+        int select = askInt(message);
         if (select < 0 || select >= max) {
             throw new IllegalStateException("Неверный пункт меню. Повторите ввод.");
         }

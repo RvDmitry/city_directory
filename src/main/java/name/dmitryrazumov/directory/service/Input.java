@@ -9,23 +9,23 @@ package name.dmitryrazumov.directory.service;
 public interface Input {
     /**
      * Метод возвращает введенную строку от пользователя.
-     * @param question Вопрос на который нужно ответить пользователю.
+     * @param message Сообщение для пользователя.
      * @return Строка введенная пользователем.
      */
-    String askStr(String question);
+    String askStr(String message);
 
     /**
      * Метод возвращает введенное число от пользователя.
-     * @param question Вопрос на который нужно ответить пользователю.
+     * @param message Сообщение для пользователя.
      * @return Число введенное пользователем.
      */
-    int askInt(String question);
+    int askInt(String message);
 
     /**
      * Метод запрашивает от пользователя ввод данных от 0 до max.
-     * @param question Вопрос на который нужно ответить пользователю
-     * @param max Максимальное число, которое может ввести пользователь
-     * @return Число введенное пользователем
+     * @param message Сообщение для пользователя.
+     * @param max Максимальное число, которое может ввести пользователь.
+     * @return Число введенное пользователем.
      */
-    int askInt(String question, int max);
+    int askInt(String message, int max);
 }
