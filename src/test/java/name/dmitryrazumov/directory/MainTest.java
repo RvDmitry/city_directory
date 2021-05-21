@@ -24,7 +24,10 @@ public class MainTest {
         );
         StubAction action = new StubAction();
         new Main().init(input, new FileDirectory(), Arrays.asList(action));
-        String expect = new StringJoiner(System.lineSeparator(), System.lineSeparator(), System.lineSeparator())
+        String expect = new StringJoiner(
+                System.lineSeparator(),
+                System.lineSeparator(),
+                System.lineSeparator())
                 .add("Menu.")
                 .add("1. Stub action")
                 .toString();

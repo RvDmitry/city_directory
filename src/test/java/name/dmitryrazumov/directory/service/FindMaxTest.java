@@ -28,6 +28,9 @@ public class FindMaxTest {
         FindMax action = new FindMax();
         action.execute(new StubInput(new String[] {}), directory);
         System.setOut(out);
-        assertThat(mem.toString(), is(String.format("%s = %d", first.getName(), first.getPopulation())));
+        assertThat(mem.toString(), is(
+                String.format("%s = %d", first.getName(), first.getPopulation())
+                )
+        );
     }
 }
