@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/RvDmitry/city_directory.svg?branch=master)](https://travis-ci.com/RvDmitry/city_directory)
 
 # City Directory
 
