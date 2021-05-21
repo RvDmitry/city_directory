@@ -22,13 +22,13 @@ public class City {
     /**
      * Количество жителей города.
      */
-    private String population;
+    private int population;
     /**
      * Дата основания или первое упоминание.
      */
-    private String foundation;
+    private int foundation;
 
-    public City(String name, String region, String district, String population, String foundation) {
+    public City(String name, String region, String district, int population, int foundation) {
         this.name = name;
         this.region = region;
         this.district = district;
@@ -60,19 +60,19 @@ public class City {
         this.district = district;
     }
 
-    public String getPopulation() {
+    public int getPopulation() {
         return population;
     }
 
-    public void setPopulation(String population) {
+    public void setPopulation(int population) {
         this.population = population;
     }
 
-    public String getFoundation() {
+    public int getFoundation() {
         return foundation;
     }
 
-    public void setFoundation(String foundation) {
+    public void setFoundation(int foundation) {
         this.foundation = foundation;
     }
 

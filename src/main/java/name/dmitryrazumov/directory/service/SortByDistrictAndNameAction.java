@@ -13,6 +13,7 @@ import java.util.List;
  * @version 1
  */
 public class SortByDistrictAndNameAction implements UserAction {
+
     @Override
     public String name() {
         return "Вывести и отсортировать города по федеральным округам и наименованию.";

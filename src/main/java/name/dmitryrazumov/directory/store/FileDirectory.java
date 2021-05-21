@@ -4,9 +4,8 @@ import name.dmitryrazumov.directory.model.City;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class FileDirectory
@@ -20,10 +19,6 @@ public class FileDirectory implements Store {
      */
     private final List<City> cities = new ArrayList<>();
 
-    /**
-     * Метод загружает список городов из файла.
-     * @param name Имя файла.
-     */
     @Override
     public void load(String name) {
         try (BufferedReader in = new BufferedReader(new FileReader(name))) {
@@ -31,38 +26,37 @@ public class FileDirectory implements Store {
             while ((s = in.readLine()) != null) {
                 String[] str = s.split(";");
                 if (str.length == 6) {
-                    cities.add(new City(str[1], str[2], str[3], str[4], str[5]));
+                    cities.add(
+                            new City(str[1], str[2], str[3],
+                                    Integer.parseInt(str[4]), Integer.parseInt(str[5]))
+                    );
                 }
             }
             System.out.println("Файл загружен успешно.");
+        } catch (NumberFormatException e) {
+            System.out.println("В файле справочника имеются ошибки.");
         } catch (Exception e) {
             System.out.println("Файл не найден.");
         }
     }
 
-    /**
-     * Метод возвращает список городов.
-     * @return Список городов.
-     */
+    @Override
+    public City add(City city) {
+        cities.add(city);
+        return city;
+    }
+
     @Override
     public List<City> findAll() {
         return cities;
     }
 
-    /**
-     * Метод сортирует список городов по наименованию.
-     * @return Список городов.
-     */
     @Override
     public List<City> sortByName() {
         Comparator<City> comp = Comparator.comparing(city -> city.getName().toLowerCase());
         return sortCityDirectory(comp);
     }
 
-    /**
-     * Метод сортирует список городов по федеральным округам и наименованию.
-     * @return Список городов.
-     */
     @Override
     public List<City> sortByDistrictAndName() {
         Comparator<City> comp = Comparator.comparing(City::getDistrict)
@@ -70,11 +64,24 @@ public class FileDirectory implements Store {
         return sortCityDirectory(comp);
     }
 
-    /**
-     * Метод выполняет сортировку списка городов в соответствии с заданным условием.
-     * @param comparator Компаратор определяет сортировку.
-     * @return Отсортированный список городов.
-     */
+    @Override
+    public List<City> findMax() {
+        List<City> list = new ArrayList<>();
+        Optional<City> max = cities.stream().max(Comparator.comparing(City::getPopulation));
+        if (max.isPresent()) {
+            list = cities.stream().filter(city -> city.getPopulation() == max.get().getPopulation())
+                    .collect(Collectors.toList());
+        }
+        return list;
+    }
+
+    @Override
+    public Map<String, Long> groupByRegions() {
+        return cities.stream().collect(
+                Collectors.groupingBy(City::getRegion, Collectors.counting())
+        );
+    }
+
     private List<City> sortCityDirectory(Comparator<City> comparator) {
         List<City> sorted = new ArrayList<>(cities);
         sorted.sort(comparator);

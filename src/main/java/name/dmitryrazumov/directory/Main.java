@@ -25,7 +25,7 @@ public class Main {
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size());
-            UserAction action = actions.get(select);
+            UserAction action = actions.get(select - 1);
             run = action.execute(input, directory);
         }
     }
@@ -37,7 +37,7 @@ public class Main {
     private void showMenu(List<UserAction> actions) {
         System.out.println(System.lineSeparator() + "Menu.");
         for (int index = 0; index < actions.size(); index++) {
-            System.out.println(index + ". " + actions.get(index).name());
+            System.out.println((index + 1) + ". " + actions.get(index).name());
         }
     }
 
@@ -55,6 +55,8 @@ public class Main {
                 new FindAllAction(),
                 new SortByNameAction(),
                 new SortByDistrictAndNameAction(),
+                new FindMax(),
+                new GroupByRegionsAction(),
                 new ExitAction()
         );
         new Main().init(validate, directory, actions);
