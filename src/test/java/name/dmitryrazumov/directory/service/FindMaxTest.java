@@ -29,7 +29,7 @@ public class FindMaxTest {
         action.execute(new StubInput(new String[] {}), directory);
         System.setOut(out);
         assertThat(mem.toString(), is(
-                String.format("%s = %d", first.getName(), first.getPopulation())
+                String.format("%s = %d %n", first.getName(), first.getPopulation())
                 )
         );
     }
